@@ -8,9 +8,9 @@ class Config:
     SECRET_KEY = os.getenv("SECRET_KEY", "super_secret_key")
 
     SQLALCHEMY_DATABASE_URI = os.getenv(
-        "DATABASE_URL",
-        "mysql+pymysql://root:Qgjd%40rbjb@localhost/campus_events_db"
-    )
+        "DATABASE_URL")
+      #  "mysql+pymysql://root:Qgjd%40rbjb@localhost/campus_events_db" #
+    
 
     SQLALCHEMY_TRACK_MODIFICATIONS = False
 
