@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h2>Notifications</h2>
+
+<div class="list-group">
+
+{% for n in notifications %}
+<div class="list-group-item custom-card">
+{{ n.message }}
+</div>
+{% endfor %}
+
+</div>
+
+{% endblock %}

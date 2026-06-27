@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+{% if certificate %}
+
+<div class="alert alert-success">
+
+Certificate Verified
+
+<br>
+
+Certificate ID:
+{{ certificate.certificate_id }}
+
+</div>
+
+{% else %}
+
+<div class="alert alert-danger">
+
+Invalid Certificate
+
+</div>
+
+{% endif %}
+    
+{% endblock %}

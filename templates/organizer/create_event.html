@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h2>Create Event</h2>
+
+<form method="POST" enctype="multipart/form-data" class="card custom-card p-3">
+
+<input class="form-control mb-2" name="title" placeholder="Title">
+<textarea class="form-control mb-2" name="description"></textarea>
+
+<input class="form-control mb-2" name="club_name" placeholder="Club">
+<input class="form-control mb-2" name="category" placeholder="Category">
+<input class="form-control mb-2" name="venue" placeholder="Venue">
+
+<input type="datetime-local" class="form-control mb-2" name="date">
+<input type="file" class="form-control mb-2" name="image">
+
+<button class="btn btn-success">Create</button>
+
+</form>
+
+{% endblock %}

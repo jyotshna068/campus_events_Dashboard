@@ -1,0 +1,198 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="card shadow">
+
+<div class="card-body">
+
+    <h2>
+        {{ event.title }}
+    </h2>
+
+    <hr>
+
+    <p>
+        <strong>Description:</strong>
+        {{ event.description }}
+    </p>
+
+    <p>
+        <strong>Category:</strong>
+        {{ event.category }}
+    </p>
+
+    <p>
+        <strong>Venue:</strong>
+        {{ event.venue }}
+    </p>
+
+    <p>
+        <strong>Date:</strong>
+        {{ event.date }}
+    </p>
+
+    <a
+        href="/student/register/{{ event.id }}"
+        class="btn btn-success"
+    >
+        Register
+    </a>
+    
+    <hr>
+
+       <h4>
+            Comments & Suggestions
+       </h4>
+
+       <form
+            method="POST"
+            action="/comments/add/{{ event.id }}"
+        >
+
+        <textarea
+            name="comment"
+            class="form-control mb-2"
+            rows="3"
+            required
+        ></textarea>
+
+       <button
+           class="btn btn-primary"
+        >
+           Add Comment
+        </button>
+
+        </form>
+
+    <hr>
+
+    {% for comment in comments %}
+
+<div class="card mb-3">
+
+<div class="card-body">
+
+<p>
+
+{{ comment.comment }}
+
+</p>
+
+<small>
+
+Likes:
+{{ comment.likes }}
+
+|
+Dislikes:
+{{ comment.dislikes }}
+
+</small>
+
+<br><br>
+
+<a
+href="/comments/like/{{ comment.id }}"
+class="btn btn-success btn-sm"
+>
+Like
+</a>
+
+<a
+href="/comments/dislike/{{ comment.id }}"
+class="btn btn-danger btn-sm"
+>
+Dislike
+</a>
+
+<a
+href="/comments/edit/{{ comment.id }}"
+class="btn btn-warning btn-sm"
+>
+Edit
+</a>
+
+<a
+href="/comments/delete/{{ comment.id }}"
+class="btn btn-dark btn-sm"
+>
+Delete
+</a>
+
+<hr>
+
+<form
+method="POST"
+action="/comments/reply/{{ comment.id }}"
+>
+
+<input
+type="text"
+name="reply"
+class="form-control mb-2"
+placeholder="Write a reply..."
+required
+>
+
+<button
+class="btn btn-secondary btn-sm"
+>
+Reply
+</button>
+
+</form>
+
+{% for reply in replies %}
+
+{% if reply.comment_id == comment.id %}
+
+<div
+class="ms-5 mt-2 border-start ps-3"
+>
+
+{{ reply.reply }}
+
+</div>
+
+{% endif %}
+
+{% endfor %}
+
+<a
+href="/calendar/{{ event.id }}"
+class="btn btn-warning"
+>
+Google Calendar
+</a>
+
+<a
+href="/download-ical/{{ event.id }}"
+class="btn btn-info"
+>
+Download iCal
+</a>
+
+{% if event.qr_code %}
+
+<hr>
+
+<h4>
+Event Attendance QR
+</h4>
+
+<img
+src="{{ url_for(
+'static',
+filename='qr/' + event.qr_code
+) }}"
+width="250"
+>
+
+{% endif %}
+
+</div>
+
+</div>
+
+{% endblock %}

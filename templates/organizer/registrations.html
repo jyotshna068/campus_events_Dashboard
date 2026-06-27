@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h2>
+Event Registrations
+</h2>
+
+<table class="table table-bordered">
+
+<thead>
+
+<tr>
+
+<th>Student ID</th>
+<th>Registration Time</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+{% for reg in registrations %}
+
+<tr>
+
+<td>{{ reg.student_id }}</td>
+
+<td>{{ reg.registered_at }}</td>
+
+</tr>
+
+{% endfor %}
+
+</tbody>
+
+</table>
+
+{% endblock %}

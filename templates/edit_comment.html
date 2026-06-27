@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h2>Edit Comment</h2>
+
+<form method="POST">
+
+<div class="mb-3">
+
+<textarea
+name="comment"
+class="form-control"
+rows="4"
+required
+>
+{{ comment.comment }}
+</textarea>
+
+</div>
+
+<button
+class="btn btn-primary"
+>
+Update Comment
+</button>
+
+</form>
+
+{% endblock %}

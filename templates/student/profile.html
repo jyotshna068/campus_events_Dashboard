@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="card custom-card p-3">
+
+<h3>Profile</h3>
+
+<p><b>Name:</b> {{ user.name }}</p>
+<p><b>Email:</b> {{ user.email }}</p>
+<p><b>Branch:</b> {{ user.branch }}</p>
+<p><b>Year:</b> {{ user.year }}</p>
+<p><b>Role:</b> {{ user.role }}</p>
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h2>Certificates</h2>
+
+<table class="table table-dark">
+
+<tr><th>ID</th><th>Download</th></tr>
+
+{% for c in certificates %}
+<tr>
+<td>{{ c.certificate_id }}</td>
+<td>
+<a href="{{ url_for('static', filename='certificates/' + c.pdf_path) }}" class="btn btn-success">
+Download
+</a>
+</td>
+</tr>
+{% endfor %}
+
+</table>
+
+{% endblock %}
