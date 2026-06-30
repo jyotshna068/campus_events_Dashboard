@@ -87,8 +87,7 @@ Campus-Events-Dashboard/
 ├── routes/
 ├── templates/
 ├── static/
-├── utils/
-└── migrations/
+└── utils/
 ```
 
 ---
@@ -137,3 +136,98 @@ Campus-Events-Dashboard/
 * Event Management
 
 ---
+
+## ⚙️ Installation
+
+### Clone the Repository
+
+```bash
+git clone https://github.com/jyotshna068/Campus-Events-Dashboard.git
+cd Campus-Events-Dashboard
+```
+
+---
+
+### Create a Virtual Environment
+
+```bash
+python -m venv venv
+```
+
+Activate the environment:
+
+**Windows**
+
+```bash
+venv\Scripts\activate
+```
+
+**Linux / macOS**
+
+```bash
+source venv/bin/activate
+```
+
+---
+
+### Install Dependencies
+
+```bash
+pip install -r requirements.txt
+```
+
+---
+
+### Configure MySQL
+
+Create a MySQL database:
+
+```sql
+CREATE DATABASE campus_events_db;
+```
+
+Update your `config.py` with your MySQL credentials.
+
+Example:
+
+```python
+SQLALCHEMY_DATABASE_URI = "mysql+pymysql://username:password@localhost/campus_events_db"
+```
+
+---
+
+### Run the Application
+
+```bash
+python app.py
+```
+
+Open your browser and visit:
+
+```
+http://127.0.0.1:5000
+```
+
+---
+
+## 📌 Future Enhancements
+
+* Email reminders for registered events
+* Interactive dashboard analytics
+* CSV report exports
+* Event bookmarking
+* Live event notifications
+* Mobile-responsive enhancements
+* Role-based profile customization
+
+---
+
+## 👩‍💻 Author
+
+**Jyotshna Devi Gavireddy**
+
+---
+
+## 📄 License
+
+This project is developed for educational and portfolio purposes.
