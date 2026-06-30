@@ -142,8 +142,8 @@ Campus-Events-Dashboard/
 ### Clone the Repository
 
 ```bash
-git clone https://github.com/jyotshna068/Campus-Events-Dashboard.git
-cd Campus-Events-Dashboard
+git clone https://github.com/jyotshna068/campus-events-Dashboard.git
+cd campus-events-Dashboard
 ```
 
 ---
@@ -207,18 +207,6 @@ Open your browser and visit:
 ```
 http://127.0.0.1:5000
 ```
-
----
-
-## 📌 Future Enhancements
-
-* Email reminders for registered events
-* Interactive dashboard analytics
-* CSV report exports
-* Event bookmarking
-* Live event notifications
-* Mobile-responsive enhancements
-* Role-based profile customization
 
 ---
 
