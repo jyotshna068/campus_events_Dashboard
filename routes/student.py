@@ -27,7 +27,11 @@ student_bp = Blueprint(
 @student_bp.route("/dashboard")
 @login_required
 def dashboard():
-
+    
+    if current_user.role != "student":
+        flash("Access Denied")
+        return redirect(url_for("auth.login"))
+    
     registrations = Registration.query.filter_by(
         student_id=current_user.id
     ).all()
@@ -36,7 +40,8 @@ def dashboard():
 
     for registration in registrations:
 
-        event = Event.query.get(
+        event = db.session.get(
+            Event,
             registration.event_id
         )
 
@@ -56,6 +61,10 @@ def dashboard():
 @login_required
 def register_event(event_id):
 
+    if current_user.role != "student":
+        flash("Access Denied")
+        return redirect(url_for("auth.login"))
+    
     existing_registration = (
         Registration.query.filter_by(
             student_id=current_user.id,
@@ -90,11 +99,13 @@ def register_event(event_id):
 
     db.session.add(notification)
 
+    db.session.commit()
+    
     send_registration_email(
     current_user.email,
     Event.query.get(event_id).title
 )
-    db.session.commit()
+   
 
     flash(
         "Successfully registered."
@@ -113,6 +124,10 @@ def register_event(event_id):
 )
 @login_required
 def notifications():
+
+    if current_user.role != "student":
+        flash("Access Denied")
+        return redirect(url_for("auth.login"))
 
     notifications = (
         Notification.query.filter_by(
@@ -134,7 +149,10 @@ def notifications():
 @student_bp.route("/profile")
 @login_required
 def profile():
-
+    if current_user.role != "student":
+        flash("Access Denied")
+        return redirect(url_for("auth.login"))
+    
     return render_template(
         "student/profile.html",
         user=current_user
