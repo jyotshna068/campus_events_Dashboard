@@ -8,6 +8,7 @@ from flask import flash
 from flask_login import login_user
 from flask_login import logout_user
 from flask_login import login_required
+from flask_login import current_user
 
 from werkzeug.security import generate_password_hash
 from werkzeug.security import check_password_hash
@@ -68,6 +69,17 @@ def signup():
 @auth_bp.route("/login", methods=["GET", "POST"])
 def login():
 
+    if current_user.is_authenticated:
+
+        if current_user.role == "student":
+            return redirect(url_for("student.dashboard"))
+
+        elif current_user.role == "organizer":
+            return redirect(url_for("organizer.dashboard"))
+
+        elif current_user.role == "admin":
+            return redirect(url_for("admin.dashboard"))
+
     if request.method == "POST":
 
         email = request.form["email"]
@@ -92,32 +104,19 @@ def login():
             user.role == "organizer"
             and not user.approved
         ):
-            flash(
-                "Waiting for admin approval"
-            )
-            return redirect(
-                url_for("auth.login")
-            )
+            flash("Waiting for admin approval")
+            return redirect(url_for("auth.login"))
 
         login_user(user)
 
         if user.role == "student":
-            return redirect(
-                url_for(
-                    "student.dashboard"
-                )
-            )
+            return redirect(url_for("student.dashboard"))
 
         elif user.role == "organizer":
-            return redirect(
-                url_for(
-                    "organizer.dashboard"
-                )
-            )
+            return redirect(url_for("organizer.dashboard"))
 
-        return redirect(
-            url_for("admin.dashboard")
-        )
+        elif user.role == "admin":
+            return redirect(url_for("admin.dashboard"))
 
     return render_template("login.html")
 
